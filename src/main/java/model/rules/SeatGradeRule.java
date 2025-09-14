@@ -1,7 +1,7 @@
 package model.rules;
 
-import model.SeatGrade;
-import model.SeatNumber;
+import model.seat.SeatGrade;
+import model.seat.SeatNumber;
 
 public interface SeatGradeRule {
     SeatGrade getSeatGrade(SeatNumber seatNumber);

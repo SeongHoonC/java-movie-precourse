@@ -1,4 +1,4 @@
-package model;
+package model.seat;
 
 public record Seat(
         SeatNumber seatNumber,

@@ -1,5 +1,7 @@
 package model.rules;
 
+import model.seat.SeatGrade;
+import model.seat.SeatNumber;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
@@ -13,10 +15,10 @@ class DefaultSeatGradeRuleTest {
     void A행부터_D행은_열에_상관없이_B등급_좌석이다(char row) {
         DefaultSeatGradeRule rule = new DefaultSeatGradeRule();
         assertAll(
-                () -> assertEquals(model.SeatGrade.B, rule.getSeatGrade(new model.SeatNumber(row, 1))),
-                () -> assertEquals(model.SeatGrade.B, rule.getSeatGrade(new model.SeatNumber(row, 5))),
-                () -> assertEquals(model.SeatGrade.B, rule.getSeatGrade(new model.SeatNumber(row, 10))),
-                () -> assertEquals(model.SeatGrade.B, rule.getSeatGrade(new model.SeatNumber(row, 100)))
+                () -> assertEquals(SeatGrade.B, rule.getSeatGrade(new SeatNumber(row, 1))),
+                () -> assertEquals(SeatGrade.B, rule.getSeatGrade(new SeatNumber(row, 5))),
+                () -> assertEquals(SeatGrade.B, rule.getSeatGrade(new SeatNumber(row, 10))),
+                () -> assertEquals(SeatGrade.B, rule.getSeatGrade(new SeatNumber(row, 100)))
         );
     }
 
@@ -25,10 +27,10 @@ class DefaultSeatGradeRuleTest {
     void E행부터_H행은_열에_상관없이_S등급_좌석이다(char row) {
         DefaultSeatGradeRule rule = new DefaultSeatGradeRule();
         assertAll(
-                () -> assertEquals(model.SeatGrade.S, rule.getSeatGrade(new model.SeatNumber(row, 1))),
-                () -> assertEquals(model.SeatGrade.S, rule.getSeatGrade(new model.SeatNumber(row, 5))),
-                () -> assertEquals(model.SeatGrade.S, rule.getSeatGrade(new model.SeatNumber(row, 10))),
-                () -> assertEquals(model.SeatGrade.S, rule.getSeatGrade(new model.SeatNumber(row, 100)))
+                () -> assertEquals(SeatGrade.S, rule.getSeatGrade(new SeatNumber(row, 1))),
+                () -> assertEquals(SeatGrade.S, rule.getSeatGrade(new SeatNumber(row, 5))),
+                () -> assertEquals(SeatGrade.S, rule.getSeatGrade(new SeatNumber(row, 10))),
+                () -> assertEquals(SeatGrade.S, rule.getSeatGrade(new SeatNumber(row, 100)))
         );
     }
 
@@ -37,10 +39,10 @@ class DefaultSeatGradeRuleTest {
     void A행부터_H행이_아니면_열에_상관없이_A등급_좌석이다(char row) {
         DefaultSeatGradeRule rule = new DefaultSeatGradeRule();
         assertAll(
-                () -> assertEquals(model.SeatGrade.A, rule.getSeatGrade(new model.SeatNumber(row, 1))),
-                () -> assertEquals(model.SeatGrade.A, rule.getSeatGrade(new model.SeatNumber(row, 5))),
-                () -> assertEquals(model.SeatGrade.A, rule.getSeatGrade(new model.SeatNumber(row, 10))),
-                () -> assertEquals(model.SeatGrade.A, rule.getSeatGrade(new model.SeatNumber(row, 100)))
+                () -> assertEquals(SeatGrade.A, rule.getSeatGrade(new SeatNumber(row, 1))),
+                () -> assertEquals(SeatGrade.A, rule.getSeatGrade(new SeatNumber(row, 5))),
+                () -> assertEquals(SeatGrade.A, rule.getSeatGrade(new SeatNumber(row, 10))),
+                () -> assertEquals(SeatGrade.A, rule.getSeatGrade(new SeatNumber(row, 100)))
         );
     }
 }

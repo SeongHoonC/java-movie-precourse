@@ -1,4 +1,4 @@
-package model;
+package model.seat;
 
 public record SeatNumber(
         char row,

@@ -1,5 +1,6 @@
 package model;
 
+import model.seat.SeatGrade;
 import org.junit.jupiter.api.Test;
 
 class SeatGradeTest {

@@ -1,6 +1,9 @@
 package model;
 
 import model.rules.SeatGradeRule;
+import model.seat.Seat;
+import model.seat.SeatGrade;
+import model.seat.SeatNumber;
 
 import java.util.Map;
 

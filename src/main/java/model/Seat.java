@@ -1,7 +1,7 @@
 package model;
 
 public record Seat(
-        int seatNumber,
+        SeatNumber seatNumber,
         SeatGrade seatGrade
 ) {
 }

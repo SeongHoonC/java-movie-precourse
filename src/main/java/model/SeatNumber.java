@@ -1,11 +1,11 @@
 package model;
 
 public record SeatNumber(
-        String row,
+        char row,
         int column
 ) {
     public SeatNumber {
-        if (row.length() != 1 || row.charAt(0) < 'A' || row.charAt(0) > 'Z') {
+        if ( row < 'A' || row > 'Z') {
             throw new IllegalArgumentException(ERROR_SEAT_ROW);
         }
         if (column <= 0 || column > 100) {

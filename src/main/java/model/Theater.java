@@ -12,13 +12,13 @@ public class Theater {
         this.seats = seats;
     }
 
-    public static Theater of(String lastRow, int lastColumn, SeatGradeRule seatGradeRule) {
+    public static Theater of(char lastRow, int lastColumn, SeatGradeRule seatGradeRule) {
 
         Map<SeatNumber, Seat> seats = new java.util.HashMap<>();
 
-        for (char row = 'A'; row <= lastRow.charAt(0); row++) {
+        for (char row = 'A'; row <= lastRow; row++) {
             for (int column = 1; column <= lastColumn; column++) {
-                SeatNumber seatNumber = new SeatNumber(String.valueOf(row), column);
+                SeatNumber seatNumber = new SeatNumber(row, column);
                 SeatGrade seatGrade = seatGradeRule.getSeatGrade(seatNumber);
                 Seat seat = new Seat(seatNumber, seatGrade);
                 seats.put(seatNumber, seat);

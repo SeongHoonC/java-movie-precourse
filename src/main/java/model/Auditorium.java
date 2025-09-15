@@ -7,15 +7,15 @@ import model.seat.SeatNumber;
 
 import java.util.Map;
 
-public class Theater {
+public class Auditorium {
 
     final Map<SeatNumber, Seat> seats;
 
-    public Theater(Map<SeatNumber, Seat> seats) {
+    public Auditorium(Map<SeatNumber, Seat> seats) {
         this.seats = seats;
     }
 
-    public static Theater of(char lastRow, int lastColumn, SeatGradeRule seatGradeRule) {
+    public static Auditorium of(char lastRow, int lastColumn, SeatGradeRule seatGradeRule) {
 
         Map<SeatNumber, Seat> seats = new java.util.HashMap<>();
 
@@ -27,6 +27,6 @@ public class Theater {
                 seats.put(seatNumber, seat);
             }
         }
-        return new Theater(seats);
+        return new Auditorium(seats);
     }
 }

@@ -3,7 +3,7 @@ package model;
 import java.time.LocalDateTime;
 
 public record Screening(
-        int id,
+        Integer id,
         Movie movie,
         LocalDateTime start,
         LocalDateTime end,

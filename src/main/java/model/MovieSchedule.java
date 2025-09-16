@@ -3,32 +3,59 @@ package model;
 import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 public class MovieSchedule {
 
-    HashMap<Auditorium, List<Screening>> schedules= new HashMap<>();
+    private final HashMap<Auditorium, List<Screening>> schedules = new HashMap<>();
 
     public void scheduleAuditorium(Auditorium auditorium, List<Movie> movies, OperatingTimes operatingTimes) {
         LocalDateTime currentTime = operatingTimes.openTime();
+        List<Screening> screenings = new java.util.ArrayList<>();
 
         for (Movie movie : movies) {
             LocalDateTime endTime = currentTime.plusMinutes(movie.runningTime());
-            if (endTime.isAfter(operatingTimes.closeTime())) {
-                throw new IllegalStateException("운영 시간을 초과합니다. 상영 영화를 줄여주세요.");
-            }
+
+            validateOperatingTime(operatingTimes, endTime);
+
             Screening screening = new Screening(
-                    UUID.randomUUID().hashCode(), // 고유 ID 생성
+                    UUID.randomUUID().hashCode(),
                     movie,
                     currentTime,
                     endTime,
                     auditorium
             );
-            schedules.computeIfAbsent(auditorium, k -> new java.util.ArrayList<>()).add(screening);
-            currentTime = endTime.plusMinutes(15); // 영화 사이에 15분 휴식 시간 추가
+
+            screenings.add(screening);
+            currentTime = endTime.plusMinutes(CLEANING_TIME);
+        }
+
+        schedules.put(auditorium, screenings);
+    }
+
+    private static void validateOperatingTime(OperatingTimes operatingTimes, LocalDateTime endTime) {
+        if (endTime.isAfter(operatingTimes.closeTime())) {
+            throw new IllegalStateException(ERROR_MESSAGE);
         }
     }
 
+    public Map<Auditorium, List<Screening>> getSchedules() {
+        return schedules.entrySet().stream()
+                .collect(java.util.stream.Collectors.toMap(
+                        Map.Entry::getKey,
+                        entry -> new java.util.ArrayList<>(entry.getValue())
+                ));
+    }
+
+    public List<Screening> getScreenings(Auditorium auditorium) {
+        return java.util.Optional.ofNullable(schedules.get(auditorium))
+                .map(java.util.ArrayList::new)
+                .orElse(new java.util.ArrayList<>());
+    }
+
+    static final int CLEANING_TIME = 30;
+    static final String ERROR_MESSAGE = "상영할 영화들이 운영 시간을 초과합니다.";
 }
 
 

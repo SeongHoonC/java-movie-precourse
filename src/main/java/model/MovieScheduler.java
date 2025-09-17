@@ -5,7 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class MovieSchedule {
+public class MovieScheduler {
 
     private final HashMap<Auditorium, List<Screening>> schedules = new HashMap<>();
 
@@ -56,5 +56,3 @@ public class MovieSchedule {
     static final int CLEANING_TIME = 30;
     static final String ERROR_MESSAGE = "상영할 영화들이 운영 시간을 초과합니다.";
 }
-
-

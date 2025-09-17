@@ -11,15 +11,15 @@ import java.util.Map;
 
 import static org.assertj.core.api.Assertions.*;
 
-class MovieScheduleTest {
+class MovieSchedulerTest {
 
-    private MovieSchedule movieSchedule;
+    private MovieScheduler movieScheduler;
     private Auditorium auditorium;
     private OperatingTimes operatingTimes;
 
     @BeforeEach
     void setUp() {
-        movieSchedule = new MovieSchedule();
+        movieScheduler = new MovieScheduler();
         
         // 테스트용 상영관 생성 (A1~J10 좌석)
         auditorium = Auditorium.of('J', 10, new DefaultSeatGradeRule());
@@ -38,10 +38,10 @@ class MovieScheduleTest {
         List<Movie> movies = List.of(movie);
 
         // when
-        movieSchedule.scheduleAuditorium(auditorium, movies, operatingTimes);
+        movieScheduler.scheduleAuditorium(auditorium, movies, operatingTimes);
 
         // then
-        List<Screening> screenings = movieSchedule.getScreenings(auditorium);
+        List<Screening> screenings = movieScheduler.getScreenings(auditorium);
         Screening expectedScreening = new Screening(
                 null,
                 movie,
@@ -62,10 +62,10 @@ class MovieScheduleTest {
         List<Movie> movies = List.of(movie1, movie2, movie3);
 
         // when
-        movieSchedule.scheduleAuditorium(auditorium, movies, operatingTimes);
+        movieScheduler.scheduleAuditorium(auditorium, movies, operatingTimes);
 
         // then
-        List<Screening> screenings = movieSchedule.getScreenings(auditorium);
+        List<Screening> screenings = movieScheduler.getScreenings(auditorium);
         List<Screening> expectedScreenings = List.of(
                 new Screening(null, movie1, LocalDateTime.of(2024, 1, 1, 9, 0), LocalDateTime.of(2024, 1, 1, 10, 30), auditorium),
                 new Screening(null, movie2, LocalDateTime.of(2024, 1, 1, 11, 0), LocalDateTime.of(2024, 1, 1, 13, 0), auditorium),
@@ -81,9 +81,9 @@ class MovieScheduleTest {
         Movie movie = new Movie(1, "반복 영화", 30);
 
         // when
-        movieSchedule.scheduleAuditorium(auditorium, movies, operatingTimes);
+        movieScheduler.scheduleAuditorium(auditorium, movies, operatingTimes);
         // then 영화 시작 끝 시간 검증
-        List<Screening> screenings = movieSchedule.getScreenings(auditorium);
+        List<Screening> screenings = movieScheduler.getScreenings(auditorium);
         List<Screening> expectedScreenings = List.of(
                 new Screening(null, movie, LocalDateTime.of(2024, 1, 1, 9, 0), LocalDateTime.of(2024, 1, 1, 9, 30), auditorium),
                 new Screening(null, movie, LocalDateTime.of(2024, 1, 1, 10, 0), LocalDateTime.of(2024, 1, 1, 10, 30), auditorium),
@@ -106,7 +106,7 @@ class MovieScheduleTest {
         List<Movie> movies = List.of(movie1, movie2, movie3, movie4, movie5);
 
         // when & then
-        assertThatCode(() -> movieSchedule.scheduleAuditorium(auditorium, movies, operatingTimes))
+        assertThatCode(() -> movieScheduler.scheduleAuditorium(auditorium, movies, operatingTimes))
                 .doesNotThrowAnyException();
     }
 
@@ -118,7 +118,7 @@ class MovieScheduleTest {
         List<Movie> movies = List.of(longMovie);
 
         // when & then
-        assertThatThrownBy(() -> movieSchedule.scheduleAuditorium(auditorium, movies, operatingTimes))
+        assertThatThrownBy(() -> movieScheduler.scheduleAuditorium(auditorium, movies, operatingTimes))
                 .isInstanceOf(IllegalStateException.class)
                 .hasMessage("상영할 영화들이 운영 시간을 초과합니다.");
     }
@@ -131,7 +131,7 @@ class MovieScheduleTest {
         List<Movie> movies = createMovies(4,300);
 
         // when & then
-        assertThatThrownBy(() -> movieSchedule.scheduleAuditorium(auditorium, movies, operatingTimes))
+        assertThatThrownBy(() -> movieScheduler.scheduleAuditorium(auditorium, movies, operatingTimes))
                 .isInstanceOf(IllegalStateException.class)
                 .hasMessage("상영할 영화들이 운영 시간을 초과합니다.");
     }
@@ -144,7 +144,7 @@ class MovieScheduleTest {
         List<Movie> movies = createMovies(4,300);
 
         // when & then
-        assertThatThrownBy(() -> movieSchedule.scheduleAuditorium(auditorium, movies, operatingTimes))
+        assertThatThrownBy(() -> movieScheduler.scheduleAuditorium(auditorium, movies, operatingTimes))
                 .isInstanceOf(IllegalStateException.class)
                 .hasMessage("상영할 영화들이 운영 시간을 초과합니다.");
     }
@@ -158,7 +158,7 @@ class MovieScheduleTest {
         List<Movie> movies = createMovies(6, 120);
 
         // when & then
-        assertThatThrownBy(() -> movieSchedule.scheduleAuditorium(auditorium, movies, operatingTimes))
+        assertThatThrownBy(() -> movieScheduler.scheduleAuditorium(auditorium, movies, operatingTimes))
                 .isInstanceOf(IllegalStateException.class)
                 .hasMessage("상영할 영화들이 운영 시간을 초과합니다.");
     }
@@ -173,10 +173,10 @@ class MovieScheduleTest {
         List<Movie> movies = List.of(shortMovie, mediumMovie, longMovie);
 
         // when
-        movieSchedule.scheduleAuditorium(auditorium, movies, operatingTimes);
+        movieScheduler.scheduleAuditorium(auditorium, movies, operatingTimes);
 
         // then 영화 시작 끝 시간 검증
-        List<Screening> screenings = movieSchedule.getScreenings(auditorium);
+        List<Screening> screenings = movieScheduler.getScreenings(auditorium);
         List<Screening> expectedScreenings = List.of(
                 new Screening(null, shortMovie, LocalDateTime.of(2024, 1, 1, 9, 0), LocalDateTime.of(2024, 1, 1, 9, 30), auditorium),
                 new Screening(null, mediumMovie, LocalDateTime.of(2024, 1, 1, 10, 0), LocalDateTime.of(2024, 1, 1, 11, 30), auditorium),
@@ -192,7 +192,7 @@ class MovieScheduleTest {
         Auditorium anotherAuditorium = Auditorium.of('A', 5, new DefaultSeatGradeRule());
 
         // when
-        List<Screening> screenings = movieSchedule.getScreenings(anotherAuditorium);
+        List<Screening> screenings = movieScheduler.getScreenings(anotherAuditorium);
 
         // then
         assertThat(screenings).isEmpty();
@@ -208,13 +208,13 @@ class MovieScheduleTest {
         Movie movie1 = new Movie(1, "영화1", 120);
         Movie movie2 = new Movie(2, "영화2", 90);
         
-        movieSchedule.scheduleAuditorium(auditorium1, List.of(movie1), operatingTimes);
-        movieSchedule.scheduleAuditorium(auditorium2, List.of(movie2), operatingTimes);
+        movieScheduler.scheduleAuditorium(auditorium1, List.of(movie1), operatingTimes);
+        movieScheduler.scheduleAuditorium(auditorium2, List.of(movie2), operatingTimes);
 
         // when
-        Map<Auditorium, List<Screening>> allSchedules = movieSchedule.getSchedules();
-        List<Screening> screenings1 = movieSchedule.getScreenings(auditorium1);
-        List<Screening> screenings2 = movieSchedule.getScreenings(auditorium2);
+        Map<Auditorium, List<Screening>> allSchedules = movieScheduler.getSchedules();
+        List<Screening> screenings1 = movieScheduler.getScreenings(auditorium1);
+        List<Screening> screenings2 = movieScheduler.getScreenings(auditorium2);
 
         // then
         assertThat(allSchedules).hasSize(2);

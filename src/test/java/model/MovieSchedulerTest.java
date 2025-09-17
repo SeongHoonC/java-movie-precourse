@@ -19,7 +19,8 @@ class MovieSchedulerTest {
 
     @BeforeEach
     void setUp() {
-        movieScheduler = new MovieScheduler();
+        SchedulingStrategy strategy = new GreedySequentialStrategy(30);
+        movieScheduler = new MovieScheduler(strategy);
         
         // 테스트용 상영관 생성 (A1~J10 좌석)
         auditorium = Auditorium.of('J', 10, new DefaultSeatGradeRule());
@@ -237,34 +238,6 @@ class MovieSchedulerTest {
         return java.util.stream.IntStream.rangeClosed(1, count)
                 .mapToObj(i -> new Movie(i, "영화" + i, runningTime))
                 .collect(java.util.stream.Collectors.toList());
-    }
-
-    @Test
-    @DisplayName("빌더 패턴으로 여러 상영관을 체이닝하여 스케줄링할 수 있다")
-    void scheduleMultipleAuditoriumsWithBuilderPattern() {
-        // given
-        Auditorium auditorium1 = Auditorium.of('A', 5, new DefaultSeatGradeRule());
-        Auditorium auditorium2 = Auditorium.of('B', 3, new DefaultSeatGradeRule());
-        Auditorium auditorium3 = Auditorium.of('C', 7, new DefaultSeatGradeRule());
-        
-        Movie movie1 = new Movie(1, "액션 영화", 120);
-        Movie movie2 = new Movie(2, "코미디 영화", 90);
-        Movie movie3 = new Movie(3, "드라마 영화", 150);
-
-        // when
-        MovieSchedule movieSchedule = movieScheduler
-                .scheduleAuditorium(auditorium1, List.of(movie1), operatingTimes)
-                .scheduleAuditorium(auditorium2, List.of(movie2), operatingTimes)
-                .scheduleAuditorium(auditorium3, List.of(movie3), operatingTimes)
-                .build();
-
-        // then
-        assertThat(movieSchedule.getScreenings(auditorium1)).hasSize(1);
-        assertThat(movieSchedule.getScreenings(auditorium2)).hasSize(1);
-        assertThat(movieSchedule.getScreenings(auditorium3)).hasSize(1);
-        
-        Map<Auditorium, List<Screening>> allSchedules = movieSchedule.getAllSchedules();
-        assertThat(allSchedules).hasSize(3);
     }
 
     private List<Movie> createSameMovies(int count, int runningTime) {

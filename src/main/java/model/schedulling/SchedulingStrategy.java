@@ -1,4 +1,9 @@
-package model;
+package model.schedulling;
+
+import model.Auditorium;
+import model.Movie;
+import model.OperatingTimes;
+import model.Screening;
 
 import java.util.List;
 

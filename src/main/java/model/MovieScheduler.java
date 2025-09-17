@@ -1,5 +1,7 @@
 package model;
 
+import model.schedulling.SchedulingStrategy;
+
 import java.util.List;
 
 public class MovieScheduler {

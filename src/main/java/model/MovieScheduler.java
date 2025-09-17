@@ -1,15 +1,13 @@
 package model;
 
 import java.time.LocalDateTime;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class MovieScheduler {
 
-    private final HashMap<Auditorium, List<Screening>> schedules = new HashMap<>();
+    private final MovieSchedule movieSchedule = new MovieSchedule();
 
-    public void scheduleAuditorium(Auditorium auditorium, List<Movie> movies, OperatingTimes operatingTimes) {
+    public MovieScheduler scheduleAuditorium(Auditorium auditorium, List<Movie> movies, OperatingTimes operatingTimes) {
         LocalDateTime currentTime = operatingTimes.openTime();
         List<Screening> screenings = new java.util.ArrayList<>();
 
@@ -30,7 +28,8 @@ public class MovieScheduler {
             currentTime = endTime.plusMinutes(CLEANING_TIME);
         }
 
-        schedules.put(auditorium, screenings);
+        movieSchedule.addScreenings(auditorium, screenings);
+        return this;
     }
 
     private static void validateOperatingTime(OperatingTimes operatingTimes, LocalDateTime endTime) {
@@ -39,18 +38,8 @@ public class MovieScheduler {
         }
     }
 
-    public Map<Auditorium, List<Screening>> getSchedules() {
-        return schedules.entrySet().stream()
-                .collect(java.util.stream.Collectors.toMap(
-                        Map.Entry::getKey,
-                        entry -> new java.util.ArrayList<>(entry.getValue())
-                ));
-    }
-
-    public List<Screening> getScreenings(Auditorium auditorium) {
-        return java.util.Optional.ofNullable(schedules.get(auditorium))
-                .map(java.util.ArrayList::new)
-                .orElse(new java.util.ArrayList<>());
+    public MovieSchedule build() {
+        return movieSchedule;
     }
 
     static final int CLEANING_TIME = 30;

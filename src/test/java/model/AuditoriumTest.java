@@ -7,12 +7,12 @@ import org.junit.jupiter.api.Test;
 public class AuditoriumTest {
     @Test
     void 마지막_행이_F이고_마지막_열이_10이면_60개의_좌석을_가진다() {
-        Auditorium theater = Auditorium.of(
+        Auditorium auditorium = Auditorium.of(
                 'F',
                 10,
                 new DefaultSeatGradeRule());
 
-        assert theater.seats.size() == 60;
+        assert auditorium.getSeats().size() == 60;
     }
 
     @Test
@@ -21,6 +21,6 @@ public class AuditoriumTest {
                 'C',
                 5,
                 new DefaultSeatGradeRule());
-        assert theater.seats.size() == 15;
+        assert theater.getSeats().size() == 15;
     }
 }

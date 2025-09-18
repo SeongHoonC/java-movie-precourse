@@ -9,10 +9,14 @@ import java.util.Map;
 
 public class Auditorium {
 
-    final Map<SeatNumber, Seat> seats;
+    private final Map<SeatNumber, Seat> seats;
 
     public Auditorium(Map<SeatNumber, Seat> seats) {
         this.seats = seats;
+    }
+
+    public Map<SeatNumber, Seat> getSeats() {
+        return seats;
     }
 
     public static Auditorium of(char lastRow, int lastColumn, SeatGradeRule seatGradeRule) {

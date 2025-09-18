@@ -1,6 +1,6 @@
 package data;
 
-import model.Movie;
+import model.common.Movie;
 
 import java.util.HashMap;
 import java.util.Map;

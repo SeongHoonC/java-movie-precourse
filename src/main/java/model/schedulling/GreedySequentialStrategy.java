@@ -1,9 +1,9 @@
 package model.schedulling;
 
-import model.Auditorium;
-import model.Movie;
-import model.OperatingTimes;
-import model.Screening;
+import model.common.Auditorium;
+import model.common.Movie;
+import model.common.OperatingTimes;
+import model.common.Screening;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;

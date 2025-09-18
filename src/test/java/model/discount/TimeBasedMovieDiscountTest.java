@@ -1,6 +1,6 @@
 package model.discount;
 
-import model.*;
+import model.common.*;
 import model.seat.Seat;
 import model.seat.SeatGrade;
 import model.seat.SeatNumber;

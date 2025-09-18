@@ -1,7 +1,7 @@
 package model.discount;
 
-import model.Money;
-import model.Ticket;
+import model.common.Money;
+import model.common.Ticket;
 
 import java.time.LocalDate;
 

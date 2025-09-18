@@ -1,5 +1,6 @@
 package model.rules;
 
+import model.seat.DefaultSeatGradeRule;
 import model.seat.SeatGrade;
 import model.seat.SeatNumber;
 import org.junit.jupiter.params.ParameterizedTest;

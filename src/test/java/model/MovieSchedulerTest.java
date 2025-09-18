@@ -1,7 +1,13 @@
 package model;
 
-import model.rules.DefaultSeatGradeRule;
+import model.common.Auditorium;
+import model.common.Movie;
+import model.common.OperatingTimes;
+import model.common.Screening;
+import model.seat.DefaultSeatGradeRule;
 import model.schedulling.GreedySequentialStrategy;
+import model.schedulling.MovieSchedule;
+import model.schedulling.MovieScheduler;
 import model.schedulling.SchedulingStrategy;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;

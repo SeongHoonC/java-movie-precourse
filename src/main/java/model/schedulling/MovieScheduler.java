@@ -1,6 +1,9 @@
-package model;
+package model.schedulling;
 
-import model.schedulling.SchedulingStrategy;
+import model.common.Auditorium;
+import model.common.Movie;
+import model.common.OperatingTimes;
+import model.common.Screening;
 
 import java.util.List;
 

@@ -1,20 +1,15 @@
 package model.discount;
 
-import model.*;
-import model.rules.DefaultSeatGradeRule;
+import model.common.*;
+import model.seat.DefaultSeatGradeRule;
 import model.seat.Seat;
-import model.seat.SeatGrade;
-import model.seat.SeatNumber;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.Map;
-import java.util.HashMap;
 
 import static org.assertj.core.api.Assertions.assertThat;
 

@@ -1,6 +1,7 @@
 package model;
 
-import model.rules.DefaultSeatGradeRule;
+import model.common.Auditorium;
+import model.seat.DefaultSeatGradeRule;
 import org.junit.jupiter.api.Test;
 
 public class AuditoriumTest {

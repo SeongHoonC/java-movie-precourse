@@ -1,7 +1,4 @@
-package model.rules;
-
-import model.seat.SeatGrade;
-import model.seat.SeatNumber;
+package model.seat;
 
 import java.util.List;
 

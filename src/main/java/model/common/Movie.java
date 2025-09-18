@@ -1,4 +1,4 @@
-package model;
+package model.common;
 
 public record Movie(
         int id,

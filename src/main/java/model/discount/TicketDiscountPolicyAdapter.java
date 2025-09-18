@@ -1,6 +1,6 @@
 package model.discount;
 
-import model.Ticket;
+import model.common.Ticket;
 
 import java.util.List;
 

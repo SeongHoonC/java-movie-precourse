@@ -1,4 +1,8 @@
-package model;
+package model.schedulling;
+
+import model.common.Auditorium;
+import model.common.Movie;
+import model.common.Screening;
 
 import java.util.HashMap;
 import java.util.List;

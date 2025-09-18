@@ -1,6 +1,6 @@
-package model;
+package model.common;
 
-import model.rules.SeatGradeRule;
+import model.seat.SeatGradeRule;
 import model.seat.Seat;
 import model.seat.SeatGrade;
 import model.seat.SeatNumber;

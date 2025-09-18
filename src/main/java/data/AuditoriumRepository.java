@@ -1,7 +1,7 @@
 package data;
 
-import model.Auditorium;
-import model.rules.DefaultSeatGradeRule;
+import model.common.Auditorium;
+import model.seat.DefaultSeatGradeRule;
 
 import java.util.HashMap;
 import java.util.Map;

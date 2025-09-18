@@ -1,4 +1,4 @@
-package model;
+package model.common;
 
 public record Money(
         int amount

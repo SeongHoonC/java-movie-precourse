@@ -4,7 +4,7 @@ public record Money(
         int amount
 ) {
     public Money {
-        if (amount <= 0) {
+        if (amount < 0) {
             throw new IllegalArgumentException(ERROR_NEGATIVE_AMOUNT);
         }
     }
@@ -21,5 +21,5 @@ public record Money(
         return new Money((int) (this.amount * percent));
     }
 
-    static final String ERROR_NEGATIVE_AMOUNT = "돈은 양의 정수여야 합니다.";
+    static final String ERROR_NEGATIVE_AMOUNT = "돈은 0 이거나 양의 정수여야 합니다.";
 }

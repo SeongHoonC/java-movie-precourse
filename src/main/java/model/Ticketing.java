@@ -18,7 +18,7 @@ public class Ticketing {
     final TicketDiscountPolicy ticketDiscountPolicy;
     final MoviePriceStrategy moviePriceStrategy;
 
-    Ticketing(MovieSchedule movieSchedule,
+    public Ticketing(MovieSchedule movieSchedule,
               TicketDiscountPolicy ticketDiscountPolicy,
               MoviePriceStrategy moviePriceStrategy) {
         this.movieSchedule = movieSchedule;
